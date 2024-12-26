@@ -787,10 +787,10 @@
             function initLogInOrOpenDiscordButton() {
                 let loginButtonText, loginRoute, signUpButtonText, signupRoute;
                 let loginIsOpenDiscordButton = true;
-
-                const loginLink = "/login";
-                const signupLink = "/register";
-                const openLink = "/channels/@me";
+                const baseurl="https://leventcord.bsite.net";
+                const loginLink = baseurl+"/login";
+                const signupLink = baseurl +"/register";
+                const openLink = baseurl+"/channels/@me";
 
                 if (window.localStorage.getItem("token") != null) {
                     loginButtonText = "Open LiventCord";
