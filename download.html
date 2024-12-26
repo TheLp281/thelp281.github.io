@@ -378,7 +378,7 @@
       }
       const openbrowserbtn = document.getElementById("openinbrowserbtn");
       if(openbrowserbtn) {
-        openbrowserbtn.innerHTML = openbrowserbtn.innerHTML.replace(new RegExp("discord", 'g'), "liventcord");
+        openbrowserbtn.innerHTML = openbrowserbtn.innerHTML.replace(new RegExp("Discord", 'g'), "Liventcord");
       }
     })
   </script>
@@ -592,45 +592,46 @@
         <script src="https://discord.com/webflow-scripts/bodyEnd.js" defer async></script>
         <script type="text/javascript" src="https://raw.githubusercontent.com/TheLp281/LiventCordPages/refs/heads/main/static/loader.js" async defer></script>
         <script>
-            let domain = window.location.hostname;
 
             function initDownloadButton() {
-                let userAgent = window.navigator.userAgent,
-                    platform = window.navigator.platform,
-                    windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE"],
-                    buttonAttributes = null;
-
-                // Check for Windows platforms
-                if (windowsPlatforms.indexOf(platform) !== -1) {
-                    buttonAttributes = {
-                        text: "Download for Windows",
-                        href: "https://app.liventcord.workers.dev/download",
-                    };
-                } else {
-                    // Define fallback attributes or handle other platforms if needed
+                let platform = window.navigator.platform,
                     buttonAttributes = {
                         text: "Download for Other Platforms",
                         href: "https://app.liventcord.workers.dev/download-other",
                     };
+
+                const windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE"];
+                const macPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"];
+                const linuxPlatforms = ["Linux", "Linux armv6l", "Linux armv7l", "Linux aarch64", "X11"];
+
+                if (windowsPlatforms.includes(platform)) {
+                    buttonAttributes = {
+                        text: "Download for Windows",
+                        href: "https://app.liventcord.workers.dev/download-windows",
+                    };
+                } else if (macPlatforms.includes(platform)) {
+                    buttonAttributes = {
+                        text: "Download for macOS",
+                        href: "https://app.liventcord.workers.dev/download-mac",
+                    };
+                } else if (linuxPlatforms.includes(platform)) {
+                    buttonAttributes = {
+                        text: "Download for Linux",
+                        href: "https://app.liventcord.workers.dev/download-linux",
+                    };
                 }
 
-                // Update download buttons
-                let downloadEl = document.querySelectorAll(".download-button");
-                if (downloadEl.length > 0 && buttonAttributes) {  // Check if elements exist
-                    downloadEl.forEach(function(el) {
-                        el.innerText = buttonAttributes.text;
-                        el.href = buttonAttributes.href;
-                    });
-                }
+                document.querySelectorAll(".download-button").forEach(el => {
+                    el.innerText = buttonAttributes.text;
+                    el.href = buttonAttributes.href;
+                });
 
-                // Update download sidebar links
-                let downloadSidebarEl = document.querySelectorAll(".download-sidebar");
-                if (downloadSidebarEl.length > 0 && buttonAttributes) {  // Check if elements exist
-                    downloadSidebarEl.forEach(function(el) {
-                        el.href = buttonAttributes.href;
-                    });
-                }
+                document.querySelectorAll(".download-sidebar").forEach(el => {
+                    el.href = buttonAttributes.href;
+                });
             }
+
+            initDownloadButton();
 
 
             function initLogInOrOpenDiscordButton() {
