@@ -598,14 +598,12 @@
 
             function initDownloadButton() {
                 let platform = window.navigator.platform,
-                    buttonAttributes = {
-                        text: "Download for Other Platforms",
-                        href: "https://app.liventcord.workers.dev/download-other",
-                    };
+                buttonAttributes = {};
 
                 const windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE"];
                 const macPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"];
                 const linuxPlatforms = ["Linux", "Linux armv6l", "Linux armv7l", "Linux aarch64", "X11"];
+                const androidPlatforms = ["Android"];
 
                 if (windowsPlatforms.includes(platform)) {
                     buttonAttributes = {
@@ -622,6 +620,11 @@
                         text: "Download for Linux",
                         href: "https://app.liventcord.workers.dev/download-linux",
                     };
+                } else if (androidPlatforms.includes(platform)) {
+                    buttonAttributes = {
+                        text: "Download for Android",
+                        href: "https://app.liventcord.workers.dev/download-android",
+                    };
                 }
 
                 document.querySelectorAll(".download-button").forEach(el => {
@@ -633,6 +636,7 @@
                     el.href = buttonAttributes.href;
                 });
             }
+
 
             initDownloadButton();
 
