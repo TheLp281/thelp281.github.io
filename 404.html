@@ -2,35 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 18px;
-        }
-    </style>
-</head>
-<body>
-    <h1>404 - Page Not Found</h1>
-    <p>Redirecting you to webapp...</p>
+    <meta http-equiv="refresh" content="0;url=https://liventcord.github.io/LiventCord/app">
     <script>
         const baseUrl = "https://liventcord.github.io"
         const fullPath = window.location.pathname + window.location.search + window.location.hash
         if (window.location.href.startsWith(baseUrl + "/") && !window.location.href.includes("/LiventCord/app")) {
-            window.location.href = baseUrl + "/LiventCord/app?page=" + encodeURIComponent(fullPath)
+            const target = baseUrl + "/LiventCord/app?page=" + encodeURIComponent(fullPath)
+            window.location.replace(target)
         }
     </script>
-    
-</body>
+</head>
+<body></body>
 </html>
